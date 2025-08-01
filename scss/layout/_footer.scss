@@ -1,0 +1,47 @@
+@use '../abstracts/color' as *;
+@use '../abstracts/variable' as *;
+@use '../abstracts/mixins' as *;
+@use '../base/base' as *;
+
+.app-footer {
+    background-color: rgb($primary-color);
+    text-align: center;
+
+    .footer-main {
+        padding: 80px 0;
+        @include breakpoint(mx767) {
+            padding: 40px 0;
+        }
+
+        .footer-brand {
+            img {
+                margin-bottom: 50px;
+            }
+        }
+
+        .footer-nav {
+            @extend %inline-flex-center;
+            @include flex-wrap(wrap);
+            gap: 10px 30px;
+
+            a {
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+
+        .promo-brand-block {
+            @extend %flex-center;
+            @include flex-wrap(wrap);
+            gap: 15px 40px;
+        }
+    }
+    .footer-bottom {
+        padding: 20px 0;
+        p {
+            margin-bottom: 0;
+            color: #fff;
+            font-size: calc($global-font-size - 2px);
+        }
+    }
+}

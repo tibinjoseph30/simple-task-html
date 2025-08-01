@@ -1,0 +1,83 @@
+@use '../abstracts/color' as *;
+@use '../abstracts/variable' as *;
+@use '../abstracts/mixins' as *;
+
+button,
+a {
+    &.button {
+        min-height: $formElementHeight;
+        padding: 1rem 2rem;
+        @include inline-flex;
+        @include align-items(center);
+        @include justify-content(center);
+        text-decoration: none;
+        @include border-radius($formElementRadius);
+        outline: 1px solid transparent;
+        font-weight: 700;
+        @include transition($appTransition);
+        border: none;
+    }
+
+    &.button-md {
+        max-height: calc($formElementHeight - 10px);
+        min-height: unset;
+        padding: 1rem 1.5rem;
+        font-size: calc($global-font-size - 2px);
+    }
+
+    &.button-primary {
+        background: rgb(var(--app-gradient-color1));
+        background: linear-gradient(90deg, rgb(var(--app-gradient-color1)) 0%, rgb(var(--app-gradient-color2)) 100%);
+        color: #fff;
+
+        &:hover {
+            @include transform(translateY(-5px));
+            @include box-shadow(0px 10px 20px 4px rgb(0 0 0 / 20%));
+        }
+    }
+
+    &.button-outline-primary {
+        position: relative;
+        display: inline-block;
+        outline: 1px solid transparent;
+        background: linear-gradient(to right, rgb(var(--app-gradient-color1)), rgb(var(--app-gradient-color2)));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        overflow: hidden;
+        
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            padding: 2px;
+            border-radius: inherit;
+            background: linear-gradient(to right, rgb(var(--app-gradient-color1)), rgb(var(--app-gradient-color2)));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+        &:hover {
+            @include transform(translateY(-5px));
+            @include box-shadow(0px 10px 20px 4px rgb(0 0 0 / 20%));
+        }
+    }
+
+    &.button-primary, 
+    &.button-outline-primary {
+
+    }
+    
+
+    &.button-outline-white {
+        background-color: transparent;
+        color: #fff;
+        outline-color: #fff;
+        position: relative;
+        overflow: hidden;
+
+        &:hover {
+            // background-color: rgb($secondary-color);
+            // outline-color: rgb($secondary-color);
+        }
+    }
+}

@@ -1,0 +1,17 @@
+:root {
+    --app-global-font: "DM Sans", sans-serif;
+    --app-global-font-size: 16px;
+    --app-header-height: 80px;
+    --app-form-element-height: 54px;
+    --app-form-element-radius: 10px;
+    --app-transition: all 0.2s ease-in;
+    --app-section-padding: 80px;
+}
+
+$global-font: var(--app-global-font);
+$global-font-size: var(--app-global-font-size);
+$headerHeight: var(--app-header-height);
+$formElementHeight: var(--app-form-element-height);
+$formElementRadius: var(--app-form-element-radius);
+$appTransition: var(--app-transition);
+

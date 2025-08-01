@@ -1,0 +1,209 @@
+@use "../abstracts/color" as *;
+@use "../abstracts/variable" as *;
+@use "../abstracts/mixins" as *;
+@use "../base/base" as *;
+
+@keyframes animationFade {
+  0% {
+    opacity: 0;
+    @include transform(translate3d(0, -100%, 0));
+  }
+
+  100% {
+    opacity: 1;
+    @include transform(none);
+  }
+}
+
+.app-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: $headerHeight;
+  z-index: 9;
+  @include transition(background-color 0.4s ease);
+
+  &.header-sticky {
+    background-color: rgb(0 0 0 / 80%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    .navbar-menu {
+      .nav-link {
+        &::after {
+          content: "";
+          width: 0;
+          height: 2px;
+          background: rgb(var(--app-gradient-color1));
+          background: linear-gradient(
+            90deg,
+            rgb(var(--app-gradient-color1)) 0%,
+            rgb(var(--app-gradient-color2)) 100%
+          );
+          position: absolute;
+          bottom: 100%;
+          left: 0;
+          @include transition($appTransition);
+          @include border-radius(2px);
+        }
+
+        &:hover,
+        &.active {
+          &::after {
+            width: 25px;
+          }
+        }
+      }
+    }
+  }
+
+  .navbar {
+    height: 100%;
+
+    .navbar-brand {
+      @include flex-grow(1);
+
+      img {
+        height: 26px;
+      }
+    }
+
+    .navbar-content {
+      @include flexbox;
+      @include align-items(center);
+      @include flex-grow(1);
+
+      @include breakpoint(mx991) {
+        &::before {
+          content: "";
+          position: fixed;
+          inset: 0;
+          background-color: rgb(0 0 0 / 80%);
+        }
+        @include gridbox;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100vh;
+        padding: 1rem;
+        background-color: #000;
+        background-image: url("../../media/images/bg-01.jpg");
+        background-size: cover;
+        transition: transform 0.5s ease;
+        transform: translate3d(0, 100%, 0);
+        opacity: 0;
+      }
+
+      &.menu-active {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+        z-index: 99;
+      }
+
+      .navbar-menu,
+      .navbar-buttons {
+        @include breakpoint(mx991) {
+          @include flex-direction(column);
+        }
+      }
+
+      .navbar-menu {
+        list-style-type: none;
+        @include flexbox;
+        gap: 30px;
+
+        @include breakpoint(mx991) {
+          @include align-items(center);
+        }
+      }
+
+      .nav-link {
+        position: relative;
+        @include transition($appTransition);
+
+        @include breakpoint(mx991) {
+          font-size: 20px;
+
+          &::after {
+            content: none;
+          }
+        }
+      }
+
+      .navbar-buttons {
+        @extend %inline-flex-item-center;
+        gap: 1rem;
+
+        @include breakpoint(mx991) {
+          @include justify-content(center);
+        }
+
+        @include breakpoint(mn992) {
+          margin-left: auto;
+        }
+
+        .button-outline-white {
+          &:hover {
+            outline-color: rgb(var(--app-gradient-color2));
+            color: rgb(var(--app-gradient-color2));
+          }
+          @include breakpoint(mx991) {
+            font-size: 16px;
+          }
+        }
+      }
+
+      .side-menu-close-btn {
+        color: #fff;
+        width: 22px;
+        position: absolute;
+        top: 25px;
+        right: 25px;
+
+        @include breakpoint(mn992) {
+          display: none;
+        }
+      }
+    }
+
+    .side-menu-btn {
+      width: 28px;
+      @include gridbox;
+      gap: 7px;
+      z-index: 9;
+
+      span {
+        &:first-child {
+          width: 70%;
+          margin-left: auto;
+        }
+      }
+
+      @include breakpoint(mn992) {
+        display: none;
+      }
+
+      span {
+        height: 2px;
+        width: 100%;
+        background-color: #fff;
+      }
+    }
+
+    .nav-item {
+      .nav-link {
+        color: #fff;
+      }
+    }
+  }
+
+  & > .container {
+    height: 100%;
+  }
+
+  & + section {
+    padding-top: calc($headerHeight + 50px) !important;
+  }
+}

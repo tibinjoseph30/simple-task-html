@@ -1,0 +1,22 @@
+:root {
+    --app-primary-color: 20 53 138;
+    --app-secondary-color: 0 111 186;
+    --app-gradient-color1: 106 54 255;
+    --app-gradient-color2: 172 95 230;
+}
+
+$primary-color: var(--app-primary-color);
+$secondary-color: var(--app-secondary-color);
+$body-color: #68718B;
+
+$info: #0dcaf0;
+$danger: #dc3545;
+$danger-emphasis: #58151c;
+$primary: #0d6efd;
+$primary-emphasis: #052c65;
+$success: #20a929;
+$warning: #ffa30f;
+$warning-emphasis: #664d03;
+$pink: #d63384;
+$violet: #3a14a8;
+$gray: #B9C8F7;
